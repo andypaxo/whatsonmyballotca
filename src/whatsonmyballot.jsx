@@ -1,10 +1,16 @@
 class WhatsOnMyBallotApp extends React.Component {
   constructor() {
     super();
-    this.state = {
-      tab: 'whereAmI'
-    };
+    this.state = { tab: 'whereAmI' };
     window.setCityInfo = info => this.setCityInfo(info);
+  }
+
+  componentDidMount() {
+    const location = document.location.hash?.replace('#', '');
+    if (location && location.indexOf('/')) {
+      const [city, province] = location.split('/');
+      this.setCityInfo({city, province});
+    }
   }
 
   render() {
@@ -68,12 +74,13 @@ class WhatsOnMyBallotApp extends React.Component {
     scriptElem.setAttribute('src', `https://represent.opennorth.ca/postcodes/${postcode}?callback=setCityInfo`);
     document.getElementById('jsonp-container').appendChild(scriptElem);
   }
-  
+
   setCityInfo(info) {
-    console.log('Setting city to ' + info.city);
     if (!info || info.province !== 'AB') {
       return this.setState({tab: 'notFound'})
     }
+
+    document.location.hash = `${info.city}/${info.province}`;
 
     const cityInfo = ballotData.municipalities[info.city];
 
