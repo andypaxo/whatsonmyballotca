@@ -24,7 +24,7 @@ const ballotData = {
         description: '',
       },
       {
-        text: 'School Board trustee',
+        text: 'School Board trustee (public or separate)',
         description: '',
       },
       {
@@ -42,7 +42,99 @@ const ballotData = {
         description: ''
       },
       {
-        text: 'School Board trustee',
+        text: 'School Board trustee (public or separate)',
+        description: ''
+      },
+    ],
+    Airdrie: [
+      {
+        text: 'Mayor',
+        description: ''
+      },
+      {
+        text: 'Ward councillor',
+        description: ''
+      },
+      {
+        text: 'School Board trustee (public or separate)',
+        description: ''
+      },
+    ],
+    'Grande Prairie': [
+      {
+        text: 'Mayor',
+        description: ''
+      },
+      {
+        text: 'Ward councillor',
+        description: ''
+      },
+      {
+        text: 'School Board trustee (public or separate)',
+        description: ''
+      },
+    ],
+    Lethbridge: [
+      {
+        text: 'Mayor',
+        description: ''
+      },
+      {
+        text: 'Ward councillor',
+        description: ''
+      },
+      {
+        text: 'School Board trustee (public or separate)',
+        description: ''
+      },
+      {
+        text: 'Do you support using a ward system to elect City Councillors (other than the Mayor) starting with the 2025 municipal election?',
+        description: '',
+      },
+      {
+        text: 'Do you agree that city council should approve plans to construct a 3rd bridge prior to 2030 as a municipal capital project priority?',
+        description: '',
+      },
+    ],
+    'Medicine Hat': [
+      {
+        text: 'Mayor',
+        description: ''
+      },
+      {
+        text: 'Ward councillor',
+        description: ''
+      },
+      {
+        text: 'School Board trustee (public or separate)',
+        description: ''
+      },
+    ],
+    'Red Deer': [
+      {
+        text: 'Mayor',
+        description: ''
+      },
+      {
+        text: 'Ward councillor',
+        description: ''
+      },
+      {
+        text: 'School Board trustee (public or separate)',
+        description: ''
+      },
+    ],
+    'St. Albert': [
+      {
+        text: 'Mayor',
+        description: ''
+      },
+      {
+        text: 'Ward councillor',
+        description: ''
+      },
+      {
+        text: 'School Board trustee (public or separate)',
         description: ''
       },
     ]
