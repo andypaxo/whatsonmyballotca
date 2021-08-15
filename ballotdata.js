@@ -2,7 +2,7 @@ const ballotData = {
   provincial: [
     {
       text: 'A ballot to pick federal senators to represent the province in Ottawa.',
-      description: 'Note: <a href="https://www.canada.ca/en/campaign/independent-advisory-board-for-senate-appointments/about-the-senate.html" target="_blank">Senators are not elected in Canada</a>. <br>Candidates can be found <a href="https://www.elections.ab.ca/political-participants/senate-candidates/" target="_blank>here</a>.'
+      description: 'Note: <a href="https://www.canada.ca/en/campaign/independent-advisory-board-for-senate-appointments/about-the-senate.html" target="_blank">Senators are not elected in Canada</a>. <br>Candidates can be found <a href="https://www.elections.ab.ca/political-participants/senate-candidates/" target="_blank">here</a>.'
     },
     {
       text: 'Do you want Alberta to adopt year-round Daylight Saving Time, which is summer hours, eliminating the need to change our clocks twice a year?',
