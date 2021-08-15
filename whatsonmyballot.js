@@ -121,7 +121,12 @@ var WhatsOnMyBallotApp = /*#__PURE__*/function (_React$Component) {
       }, "Here's what's on your ballot in ", /*#__PURE__*/React.createElement("span", null, this.state.city)), /*#__PURE__*/React.createElement("div", null, this.state.provincial.map(function (item, idx) {
         return /*#__PURE__*/React.createElement("div", {
           key: idx
-        }, /*#__PURE__*/React.createElement("p", null, item.text), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("em", null, item.description)), /*#__PURE__*/React.createElement("hr", null));
+        }, /*#__PURE__*/React.createElement("p", null, item.text), /*#__PURE__*/React.createElement("p", {
+          className: "description",
+          dangerouslySetInnerHTML: {
+            __html: item.description
+          }
+        }), /*#__PURE__*/React.createElement("hr", null));
       })), /*#__PURE__*/React.createElement("div", null, this.state.municipal ? this.state.municipal.length ? this.state.municipal.map(function (item, idx) {
         return /*#__PURE__*/React.createElement("div", {
           key: idx

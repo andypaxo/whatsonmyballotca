@@ -40,7 +40,7 @@ class WhatsOnMyBallotApp extends React.Component {
       <div>
         { this.state.provincial.map((item, idx) => <div key={idx}>
           <p>{item.text}</p>
-          <p><em>{item.description}</em></p>
+          <p className='description' dangerouslySetInnerHTML={{__html: item.description}}/ >
           <hr/>
         </div>) }
       </div>
