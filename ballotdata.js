@@ -17,125 +17,125 @@ const ballotData = {
     Calgary: [
       {
         text: 'Mayor',
-        description: '',
+        description: 'Candidates can be found <a href="https://www.calgary.ca/election/information-for-voters/candidates.html">here</a>.',
       },
       {
         text: 'Ward councillor',
-        description: '',
+        description: 'Candidates can be found <a href="https://www.calgary.ca/election/information-for-voters/candidates.html">here</a>.',
       },
       {
         text: 'School Board trustee (public or separate)',
-        description: '',
+        description: 'Candidates can be found <a href="https://www.calgary.ca/election/information-for-voters/candidates.html">here</a>.',
       },
       {
         text: 'Are you in favour of reintroducing fluoridation of the municipal water supply?',
-        description: '',
+        description: 'Further information can be found <a href="https://www.calgary.ca/uep/water/drinking-water/fluoride.html">here</a>',
       },
     ],
     Edmonton: [
       {
         text: 'Mayor',
-        description: ''
+        description: 'Candidates can be found <a href="https://www.edmonton.ca/city_government/municipal_elections/for-voters">here</a>.'
       },
       {
         text: 'Ward councillor',
-        description: ''
+        description: 'Candidates can be found <a href="https://www.edmonton.ca/city_government/municipal_elections/for-voters">here</a>.'
       },
       {
         text: 'School Board trustee (public or separate)',
-        description: ''
+        description: 'Candidates can be found <a href="https://www.edmonton.ca/city_government/municipal_elections/for-voters">here</a>.'
       },
     ],
     Airdrie: [
       {
         text: 'Mayor',
-        description: ''
+        description: 'Candidates can be found <a href="https://www.airdrie.ca/index.cfm?serviceID=1707">here</a>.'
       },
       {
         text: 'Ward councillor',
-        description: ''
+        description: 'Candidates can be found <a href="https://www.airdrie.ca/index.cfm?serviceID=1707">here</a>.'
       },
       {
         text: 'School Board trustee (public or separate)',
-        description: ''
+        description: 'Candidates can be found <a href="https://www.airdrie.ca/index.cfm?serviceID=1707">here</a>.'
       },
     ],
     'Grande Prairie': [
       {
         text: 'Mayor',
-        description: ''
+        description: 'Candidates can be found <a href="https://www.cityofgp.com/election">here</a>.'
       },
       {
         text: 'Ward councillor',
-        description: ''
+        description: 'Candidates can be found <a href="https://www.cityofgp.com/election">here</a>.'
       },
       {
         text: 'School Board trustee (public or separate)',
-        description: ''
+        description: 'Candidates can be found <a href="https://www.cityofgp.com/election">here</a>.'
       },
     ],
     Lethbridge: [
       {
         text: 'Mayor',
-        description: ''
+        description: 'Candidates can be found <a href="https://www.lethbridge.ca/City-Government/Elections/Pages/Candidates.aspx">here</a>.'
       },
       {
         text: 'Ward councillor',
-        description: ''
+        description: 'Candidates can be found <a href="https://www.lethbridge.ca/City-Government/Elections/Pages/Candidates.aspx">here</a>.'
       },
       {
         text: 'School Board trustee (public or separate)',
-        description: ''
+        description: 'Candidates can be found <a href="https://www.lethbridge.ca/City-Government/Elections/Pages/Candidates.aspx">here</a>.'
       },
       {
         text: 'Do you support using a ward system to elect City Councillors (other than the Mayor) starting with the 2025 municipal election?',
-        description: '',
+        description: '<a href="https://www.lethbridge.ca/City-Government/Elections/Pages/default.aspx">Source</a>.',
       },
       {
         text: 'Do you agree that city council should approve plans to construct a 3rd bridge prior to 2030 as a municipal capital project priority?',
-        description: '',
+        description: '<a href="https://www.lethbridge.ca/City-Government/Elections/Pages/default.aspx">Source</a>.',
       },
     ],
     'Medicine Hat': [
       {
         text: 'Mayor',
-        description: ''
+        description: 'Candidates can be found <a href="https://www.medicinehat.ca/what-s-new/election">here</a>.'
       },
       {
         text: 'Ward councillor',
-        description: ''
+        description: 'Candidates can be found <a href="https://www.medicinehat.ca/what-s-new/election">here</a>.'
       },
       {
         text: 'School Board trustee (public or separate)',
-        description: ''
+        description: 'Candidates can be found <a href="https://www.medicinehat.ca/what-s-new/election">here</a>.'
       },
     ],
     'Red Deer': [
       {
         text: 'Mayor',
-        description: ''
+        description: 'Candidates can be found <a href="https://elections.reddeer.ca/for-voters/whos-running/">here</a>.'
       },
       {
         text: 'Ward councillor',
-        description: ''
+        description: 'Candidates can be found <a href="https://elections.reddeer.ca/for-voters/whos-running/">here</a>.'
       },
       {
         text: 'School Board trustee (public or separate)',
-        description: ''
+        description: 'Candidates can be found <a href="https://elections.reddeer.ca/for-voters/whos-running/">here</a>.'
       },
     ],
     'St. Albert': [
       {
         text: 'Mayor',
-        description: ''
+        description: 'Candidates can be found <a href="https://stalbert.ca/cosa/elections-census/election/whos-running/">here</a>.'
       },
       {
         text: 'Ward councillor',
-        description: ''
+        description: 'Candidates can be found <a href="https://stalbert.ca/cosa/elections-census/election/whos-running/">here</a>.'
       },
       {
         text: 'School Board trustee (public or separate)',
-        description: ''
+        description: 'Candidates can be found <a href="https://stalbert.ca/cosa/elections-census/election/whos-running/">here</a>.'
       },
     ]
   }
