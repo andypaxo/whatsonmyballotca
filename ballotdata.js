@@ -33,7 +33,7 @@ const ballotData = {
       },
       {
         text: 'Are you in favour of reintroducing fluoridation of the municipal water supply?',
-        description: 'Further information can be found <a href="https://www.calgary.ca/uep/water/drinking-water/fluoride.html" target="_blank">here</a>',
+        description: 'Further information can be found <a href="https://www.calgary.ca/uep/water/drinking-water/fluoride.html" target="_blank">here</a>.',
       },
     ],
     Edmonton: [
