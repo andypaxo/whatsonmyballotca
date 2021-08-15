@@ -2,14 +2,16 @@ class WhatsOnMyBallotApp extends React.Component {
   constructor() {
     super();
     this.state = { tab: 'whereAmI' };
-    window.setCityInfo = info => this.setCityInfo(info);
+    window.setCity = info => this.setCity(info);
   }
 
   componentDidMount() {
-    const location = document.location.hash?.replace('#', '');
-    if (location && location.indexOf('/')) {
-      const [city, province] = location.split('/');
+    const place = document.location.hash?.replace('#', '');
+    if (place && place.indexOf('/')) {
+      const [city, province] = place.split('/');
       this.setCityInfo({city, province});
+    } else if (place === 'NotFound') {
+      this.setState({tab: 'notFound'});
     }
   }
 
@@ -20,29 +22,34 @@ class WhatsOnMyBallotApp extends React.Component {
   }
 
   whereAmI() {
-    return <form className='postcode-form' onSubmit={evt => this.findByPostcode(evt)}>
-        <label className='label mr-2'>My postcode is</label>
-        <p className='control is-expanded mr-2'>
-          <input
-            className='input' type='text' name='my postcode' required
-            onChange={evt => this.setState({postcode: evt.currentTarget.value})}
-          />
-        </p>
-        <p className='control is-expanded'>
-          <button className='button is-success' type='submit'>Go</button>
-        </p>
-    </form>;
+    return <div>
+      <div className='introduction' dangerouslySetInnerHTML={{__html: ballotData.introduction}} />
+      <form className='postcode-form' onSubmit={evt => this.findByPostcode(evt)}>
+          <label className='label mr-2'>My postcode is</label>
+          <p className='control is-expanded mr-2'>
+            <input
+              className='input' type='text' name='my postcode' required
+              onChange={evt => this.setState({postcode: evt.currentTarget.value})}
+            />
+          </p>
+          <p className='control is-expanded'>
+            <button className='button is-success' type='submit'>Go</button>
+          </p>
+      </form>
+    </div>;
   }
 
   onMyBallot() {
     return <div className='page section' >
-      <h1 className='title'>Here's what's on your ballot in <span>{this.state.city}</span></h1>
+      <h1 className='title'>Here's what will be on your ballot in <span>{this.state.city}</span></h1>
       <div>
-        { this.state.provincial.map((item, idx) => <div key={idx}>
-          <p>{item.text}</p>
-          <p className='description' dangerouslySetInnerHTML={{__html: item.description}}/ >
-          <hr/>
-        </div>) }
+        { this.state.provincial.map((item, idx) => 
+          <div key={idx}>
+            <p>{item.text}</p>
+            <p className='description' dangerouslySetInnerHTML={{__html: item.description}} />
+            <hr/>
+          </div>
+        )}
       </div>
       <div>
         {
@@ -52,7 +59,7 @@ class WhatsOnMyBallotApp extends React.Component {
           ?  this.state.municipal.map((item, idx) =>
             <div key={idx}>
               <p>{item.text}</p>
-              <p className='description' dangerouslySetInnerHTML={{__html: item.description}}/ >
+              <p className='description' dangerouslySetInnerHTML={{__html: item.description}} />
               <hr/>
             </div>)
           : <p>There's nothing on the ballot specific to {this.state.city}</p>
@@ -71,16 +78,27 @@ class WhatsOnMyBallotApp extends React.Component {
     evt.preventDefault();
     const postcode = this.state.postcode.toUpperCase().replace(/[^0-9A-Z]/g, '');
     const scriptElem = document.createElement('script');
-    scriptElem.setAttribute('src', `https://represent.opennorth.ca/postcodes/${postcode}?callback=setCityInfo`);
+    scriptElem.setAttribute('src', `https://represent.opennorth.ca/postcodes/${postcode}?callback=setCity`);
     document.getElementById('jsonp-container').appendChild(scriptElem);
+
+    setTimeout(() => {
+      if (!this.locationLoaded) {
+        this.displayNotFound();
+      }
+    }, 5000);
+  }
+
+  setCity(info) {
+    window.history.pushState(null, null, `./#${info.city}/${info.province}`);
+    this.setCityInfo(info);
   }
 
   setCityInfo(info) {
-    if (!info || info.province !== 'AB') {
-      return this.setState({tab: 'notFound'})
-    }
+    this.locationLoaded = true;
 
-    window.location = `#${info.city}/${info.province}`;
+    if (!info || info.province !== 'AB') {
+      return this.displayNotFound();
+    }
 
     const cityInfo = ballotData.municipalities[info.city];
 
@@ -91,6 +109,15 @@ class WhatsOnMyBallotApp extends React.Component {
       municipal: cityInfo
     });
   }
+
+  displayNotFound() {
+    if (location.hash !== '#NotFound') {
+      window.history.pushState(null, null, `./#NotFound`);
+    }
+    return this.setState({tab: 'notFound'});
+  }
 }
+
+window.addEventListener('hashchange', () => { console.log('New page at ' + new Date); location.reload() });
 
 ReactDOM.render(<WhatsOnMyBallotApp />, document.getElementsByClassName('container')[0]);

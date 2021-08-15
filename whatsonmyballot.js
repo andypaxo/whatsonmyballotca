@@ -49,8 +49,8 @@ var WhatsOnMyBallotApp = /*#__PURE__*/function (_React$Component) {
       tab: 'whereAmI'
     };
 
-    window.setCityInfo = function (info) {
-      return _this.setCityInfo(info);
+    window.setCity = function (info) {
+      return _this.setCity(info);
     };
 
     return _this;
@@ -61,17 +61,21 @@ var WhatsOnMyBallotApp = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var _document$location$ha;
 
-      var location = (_document$location$ha = document.location.hash) === null || _document$location$ha === void 0 ? void 0 : _document$location$ha.replace('#', '');
+      var place = (_document$location$ha = document.location.hash) === null || _document$location$ha === void 0 ? void 0 : _document$location$ha.replace('#', '');
 
-      if (location && location.indexOf('/')) {
-        var _location$split = location.split('/'),
-            _location$split2 = _slicedToArray(_location$split, 2),
-            city = _location$split2[0],
-            province = _location$split2[1];
+      if (place && place.indexOf('/')) {
+        var _place$split = place.split('/'),
+            _place$split2 = _slicedToArray(_place$split, 2),
+            city = _place$split2[0],
+            province = _place$split2[1];
 
         this.setCityInfo({
           city: city,
           province: province
+        });
+      } else if (place === 'NotFound') {
+        this.setState({
+          tab: 'notFound'
         });
       }
     }
@@ -85,7 +89,12 @@ var WhatsOnMyBallotApp = /*#__PURE__*/function (_React$Component) {
     value: function whereAmI() {
       var _this2 = this;
 
-      return /*#__PURE__*/React.createElement("form", {
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+        className: "introduction",
+        dangerouslySetInnerHTML: {
+          __html: ballotData.introduction
+        }
+      }), /*#__PURE__*/React.createElement("form", {
         className: "postcode-form",
         onSubmit: function onSubmit(evt) {
           return _this2.findByPostcode(evt);
@@ -109,7 +118,7 @@ var WhatsOnMyBallotApp = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/React.createElement("button", {
         className: "button is-success",
         type: "submit"
-      }, "Go")));
+      }, "Go"))));
     }
   }, {
     key: "onMyBallot",
@@ -118,7 +127,7 @@ var WhatsOnMyBallotApp = /*#__PURE__*/function (_React$Component) {
         className: "page section"
       }, /*#__PURE__*/React.createElement("h1", {
         className: "title"
-      }, "Here's what's on your ballot in ", /*#__PURE__*/React.createElement("span", null, this.state.city)), /*#__PURE__*/React.createElement("div", null, this.state.provincial.map(function (item, idx) {
+      }, "Here's what will be on your ballot in ", /*#__PURE__*/React.createElement("span", null, this.state.city)), /*#__PURE__*/React.createElement("div", null, this.state.provincial.map(function (item, idx) {
         return /*#__PURE__*/React.createElement("div", {
           key: idx
         }, /*#__PURE__*/React.createElement("p", null, item.text), /*#__PURE__*/React.createElement("p", {
@@ -150,22 +159,34 @@ var WhatsOnMyBallotApp = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "findByPostcode",
     value: function findByPostcode(evt) {
+      var _this3 = this;
+
       evt.preventDefault();
       var postcode = this.state.postcode.toUpperCase().replace(/[^0-9A-Z]/g, '');
       var scriptElem = document.createElement('script');
-      scriptElem.setAttribute('src', "https://represent.opennorth.ca/postcodes/".concat(postcode, "?callback=setCityInfo"));
+      scriptElem.setAttribute('src', "https://represent.opennorth.ca/postcodes/".concat(postcode, "?callback=setCity"));
       document.getElementById('jsonp-container').appendChild(scriptElem);
+      setTimeout(function () {
+        if (!_this3.locationLoaded) {
+          _this3.displayNotFound();
+        }
+      }, 5000);
+    }
+  }, {
+    key: "setCity",
+    value: function setCity(info) {
+      window.history.pushState(null, null, "./#".concat(info.city, "/").concat(info.province));
+      this.setCityInfo(info);
     }
   }, {
     key: "setCityInfo",
     value: function setCityInfo(info) {
+      this.locationLoaded = true;
+
       if (!info || info.province !== 'AB') {
-        return this.setState({
-          tab: 'notFound'
-        });
+        return this.displayNotFound();
       }
 
-      window.location = "#".concat(info.city, "/").concat(info.province);
       var cityInfo = ballotData.municipalities[info.city];
       this.setState({
         tab: 'onMyBallot',
@@ -174,9 +195,24 @@ var WhatsOnMyBallotApp = /*#__PURE__*/function (_React$Component) {
         municipal: cityInfo
       });
     }
+  }, {
+    key: "displayNotFound",
+    value: function displayNotFound() {
+      if (location.hash !== '#NotFound') {
+        window.history.pushState(null, null, "./#NotFound");
+      }
+
+      return this.setState({
+        tab: 'notFound'
+      });
+    }
   }]);
 
   return WhatsOnMyBallotApp;
 }(React.Component);
 
+window.addEventListener('hashchange', function () {
+  console.log('New page at ' + new Date());
+  location.reload();
+});
 ReactDOM.render( /*#__PURE__*/React.createElement(WhatsOnMyBallotApp, null), document.getElementsByClassName('container')[0]);

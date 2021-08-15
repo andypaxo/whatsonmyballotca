@@ -1,4 +1,8 @@
 const ballotData = {
+  introduction:
+    '<p>The Alberta Senate Election and Referendum vote will be happening on <strong>October 18, 2021</strong></p>' +
+    '<p>You will be asked for your vote on several questions, including a vote for your mayor or councillor depending on where you live</p>' +
+    '<p>Find out what will be on your ballot here:</p>',
   provincial: [
     {
       text: 'A ballot to pick federal senators to represent the province in Ottawa.',
