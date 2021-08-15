@@ -130,7 +130,12 @@ var WhatsOnMyBallotApp = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/React.createElement("div", null, this.state.municipal ? this.state.municipal.length ? this.state.municipal.map(function (item, idx) {
         return /*#__PURE__*/React.createElement("div", {
           key: idx
-        }, /*#__PURE__*/React.createElement("p", null, item.text), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("em", null, item.description)), /*#__PURE__*/React.createElement("hr", null));
+        }, /*#__PURE__*/React.createElement("p", null, item.text), /*#__PURE__*/React.createElement("p", {
+          className: "description",
+          dangerouslySetInnerHTML: {
+            __html: item.description
+          }
+        }), /*#__PURE__*/React.createElement("hr", null));
       }) : /*#__PURE__*/React.createElement("p", null, "There's nothing on the ballot specific to ", this.state.city) : /*#__PURE__*/React.createElement("p", null, "We don't have information about specific ballot items for ", this.state.city)));
     }
   }, {
@@ -160,7 +165,7 @@ var WhatsOnMyBallotApp = /*#__PURE__*/function (_React$Component) {
         });
       }
 
-      document.location.hash = "".concat(info.city, "/").concat(info.province);
+      window.location = "#".concat(info.city, "/").concat(info.province);
       var cityInfo = ballotData.municipalities[info.city];
       this.setState({
         tab: 'onMyBallot',

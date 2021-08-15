@@ -52,7 +52,7 @@ class WhatsOnMyBallotApp extends React.Component {
           ?  this.state.municipal.map((item, idx) =>
             <div key={idx}>
               <p>{item.text}</p>
-              <p><em>{item.description}</em></p>
+              <p className='description' dangerouslySetInnerHTML={{__html: item.description}}/ >
               <hr/>
             </div>)
           : <p>There's nothing on the ballot specific to {this.state.city}</p>
@@ -80,7 +80,7 @@ class WhatsOnMyBallotApp extends React.Component {
       return this.setState({tab: 'notFound'})
     }
 
-    document.location.hash = `${info.city}/${info.province}`;
+    window.location = `#${info.city}/${info.province}`;
 
     const cityInfo = ballotData.municipalities[info.city];
 
