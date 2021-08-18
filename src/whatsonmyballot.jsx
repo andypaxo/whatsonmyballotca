@@ -33,7 +33,7 @@ class WhatsOnMyBallotApp extends React.Component {
             />
           </p>
           <p className='control is-expanded'>
-            <button className='button is-success' type='submit'>Go</button>
+            <button className={`button is-success ${this.state.isLoading ? 'is-loading' : ''}`} type='submit'>Go</button>
           </p>
       </form>
     </div>;
@@ -43,6 +43,7 @@ class WhatsOnMyBallotApp extends React.Component {
     return <div className='page section' >
       <h1 className='title'>Here's what will be on your ballot in <span>{this.state.city}</span></h1>
       <div>
+        <h2 className='subtitle'>Provincial questions:</h2>
         { this.state.provincial.map((item, idx) => 
           <div key={idx}>
             <p>{item.text}</p>
@@ -52,6 +53,7 @@ class WhatsOnMyBallotApp extends React.Component {
         )}
       </div>
       <div>
+        <h2 className='subtitle'>Municipal questions:</h2>
         {
         this.state.municipal ?
         (
@@ -67,11 +69,19 @@ class WhatsOnMyBallotApp extends React.Component {
         : <p>We don't have information about specific ballot items for {this.state.city}</p>
         }
       </div>
+      {this.feedbackLink()}
     </div>;
   }
 
   notFound() {
-    return <article className='message is-danger mt-4'><div className='message-body'>Sorry, couldn't find your postcode, or you're outside Alberta</div></article>
+    return <div>
+      <article className='message is-danger mt-4'><div className='message-body'>Sorry, we couldn't find your postcode, or you're outside Alberta</div></article>
+      {this.feedbackLink()}
+    </div>
+  }
+
+  feedbackLink() {
+    return <p className="feedback">Is there incomplete or incorrect information here? <a className='button' href='https://forms.gle/kJUgmnDeytbsVao89' target='_blank'>Let us know</a></p>
   }
 
   findByPostcode(evt) {
@@ -86,6 +96,8 @@ class WhatsOnMyBallotApp extends React.Component {
         this.displayNotFound();
       }
     }, 5000);
+
+    this.setState({isLoading: true});
   }
 
   setCity(info) {

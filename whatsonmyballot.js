@@ -116,7 +116,7 @@ var WhatsOnMyBallotApp = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/React.createElement("p", {
         className: "control is-expanded"
       }, /*#__PURE__*/React.createElement("button", {
-        className: "button is-success",
+        className: "button is-success ".concat(this.state.isLoading ? 'is-loading' : ''),
         type: "submit"
       }, "Go"))));
     }
@@ -127,7 +127,9 @@ var WhatsOnMyBallotApp = /*#__PURE__*/function (_React$Component) {
         className: "page section"
       }, /*#__PURE__*/React.createElement("h1", {
         className: "title"
-      }, "Here's what will be on your ballot in ", /*#__PURE__*/React.createElement("span", null, this.state.city)), /*#__PURE__*/React.createElement("div", null, this.state.provincial.map(function (item, idx) {
+      }, "Here's what will be on your ballot in ", /*#__PURE__*/React.createElement("span", null, this.state.city)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h2", {
+        className: "subtitle"
+      }, "Provincial questions:"), this.state.provincial.map(function (item, idx) {
         return /*#__PURE__*/React.createElement("div", {
           key: idx
         }, /*#__PURE__*/React.createElement("p", null, item.text), /*#__PURE__*/React.createElement("p", {
@@ -136,7 +138,9 @@ var WhatsOnMyBallotApp = /*#__PURE__*/function (_React$Component) {
             __html: item.description
           }
         }), /*#__PURE__*/React.createElement("hr", null));
-      })), /*#__PURE__*/React.createElement("div", null, this.state.municipal ? this.state.municipal.length ? this.state.municipal.map(function (item, idx) {
+      })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h2", {
+        className: "subtitle"
+      }, "Municipal questions:"), this.state.municipal ? this.state.municipal.length ? this.state.municipal.map(function (item, idx) {
         return /*#__PURE__*/React.createElement("div", {
           key: idx
         }, /*#__PURE__*/React.createElement("p", null, item.text), /*#__PURE__*/React.createElement("p", {
@@ -145,16 +149,27 @@ var WhatsOnMyBallotApp = /*#__PURE__*/function (_React$Component) {
             __html: item.description
           }
         }), /*#__PURE__*/React.createElement("hr", null));
-      }) : /*#__PURE__*/React.createElement("p", null, "There's nothing on the ballot specific to ", this.state.city) : /*#__PURE__*/React.createElement("p", null, "We don't have information about specific ballot items for ", this.state.city)));
+      }) : /*#__PURE__*/React.createElement("p", null, "There's nothing on the ballot specific to ", this.state.city) : /*#__PURE__*/React.createElement("p", null, "We don't have information about specific ballot items for ", this.state.city)), this.feedbackLink());
     }
   }, {
     key: "notFound",
     value: function notFound() {
-      return /*#__PURE__*/React.createElement("article", {
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("article", {
         className: "message is-danger mt-4"
       }, /*#__PURE__*/React.createElement("div", {
         className: "message-body"
-      }, "Sorry, couldn't find your postcode, or you're outside Alberta"));
+      }, "Sorry, we couldn't find your postcode, or you're outside Alberta")), this.feedbackLink());
+    }
+  }, {
+    key: "feedbackLink",
+    value: function feedbackLink() {
+      return /*#__PURE__*/React.createElement("p", {
+        className: "feedback"
+      }, "Is there incomplete or incorrect information here? ", /*#__PURE__*/React.createElement("a", {
+        className: "button",
+        href: "https://forms.gle/kJUgmnDeytbsVao89",
+        target: "_blank"
+      }, "Let us know"));
     }
   }, {
     key: "findByPostcode",
@@ -171,6 +186,9 @@ var WhatsOnMyBallotApp = /*#__PURE__*/function (_React$Component) {
           _this3.displayNotFound();
         }
       }, 5000);
+      this.setState({
+        isLoading: true
+      });
     }
   }, {
     key: "setCity",
