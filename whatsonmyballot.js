@@ -101,7 +101,7 @@ var WhatsOnMyBallotApp = /*#__PURE__*/function (_React$Component) {
         }
       }, /*#__PURE__*/React.createElement("label", {
         className: "label mr-2"
-      }, "My postcode is"), /*#__PURE__*/React.createElement("p", {
+      }, "My postal code is"), /*#__PURE__*/React.createElement("p", {
         className: "control is-expanded mr-2"
       }, /*#__PURE__*/React.createElement("input", {
         className: "input",
@@ -158,7 +158,7 @@ var WhatsOnMyBallotApp = /*#__PURE__*/function (_React$Component) {
         className: "message is-danger mt-4"
       }, /*#__PURE__*/React.createElement("div", {
         className: "message-body"
-      }, "Sorry, we couldn't find your postcode, or you're outside Alberta")), this.feedbackLink());
+      }, "Sorry, we couldn't find your postal code, or you're outside Alberta")), this.feedbackLink());
     }
   }, {
     key: "feedbackLink",

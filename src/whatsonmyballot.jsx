@@ -25,7 +25,7 @@ class WhatsOnMyBallotApp extends React.Component {
     return <div>
       <div className='introduction' dangerouslySetInnerHTML={{__html: ballotData.introduction}} />
       <form className='postcode-form' onSubmit={evt => this.findByPostcode(evt)}>
-          <label className='label mr-2'>My postcode is</label>
+          <label className='label mr-2'>My postal code is</label>
           <p className='control is-expanded mr-2'>
             <input
               className='input' type='text' name='my postcode' required
@@ -75,7 +75,7 @@ class WhatsOnMyBallotApp extends React.Component {
 
   notFound() {
     return <div>
-      <article className='message is-danger mt-4'><div className='message-body'>Sorry, we couldn't find your postcode, or you're outside Alberta</div></article>
+      <article className='message is-danger mt-4'><div className='message-body'>Sorry, we couldn't find your postal code, or you're outside Alberta</div></article>
       {this.feedbackLink()}
     </div>
   }
